@@ -1,0 +1,59 @@
+@import "@/theme/colors.scss";
+@import "@/theme/fonts.scss";
+@import "@/theme/screen_size.scss";
+
+.header {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  padding: 1.25rem;
+  align-items: center;
+  height: 3.75rem;
+}
+
+.extraContent {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.textContainer {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  color: $color-dark-smoke;
+  font-size: $font-size-sm;
+  align-items: flex-end;
+
+  @media (max-width: $mobile) {
+    font-size: $font-size-xs;
+    flex-direction: column;
+    justify-content: flex-end;
+  }
+}
+
+.userName {
+  white-space: nowrap;
+  margin-right: 0.25rem;
+
+  @media (max-width: $mobile) {
+    margin-right: 0rem;
+  }
+}
+
+.frontTestText {
+  font-weight: 500;
+}
+
+div.avatar:hover {
+  color: $color-snow;
+  background-color: $color-dark-smoke;
+}
+
+.avatar {
+  background-color: $color-snow;
+  color: $color-dark-smoke;
+  padding: 0.25rem;
+  border-radius: 0.25rem;
+  margin-left: 1rem;
+}
