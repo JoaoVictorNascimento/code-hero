@@ -16,26 +16,28 @@ export default async function CharactersTable() {
   const { results } = fetchedData.data;
 
   return (
-    <table className={styles.charactersTable}>
-      <thead>
-        <tr>
-          <th>Personagem</th>
-          <th>Séries</th>
-          <th>Eventos</th>
-        </tr>
-      </thead>
-      <tbody>
-        {results.map((item: CharacterType) => (
-          <CharacterItem
-            id={item.id}
-            key={item.id}
-            name={item.name}
-            thumbnail={item.thumbnail}
-            series={item.series}
-            events={item.events}
-          />
-        ))}
-      </tbody>
-    </table>
+    <div className={styles.containerCharactersTable}>
+      <table className={styles.charactersTable}>
+        <thead>
+          <tr>
+            <th>Personagem</th>
+            <th>Séries</th>
+            <th>Eventos</th>
+          </tr>
+        </thead>
+        <tbody>
+          {results.map((item: CharacterType) => (
+            <CharacterItem
+              id={item.id}
+              key={item.id}
+              name={item.name}
+              thumbnail={item.thumbnail}
+              series={item.series}
+              events={item.events}
+            />
+          ))}
+        </tbody>
+      </table>
+    </div>
   );
 }
