@@ -1,23 +1,28 @@
 @import "@/theme/colors.scss";
 @import "@/theme/fonts.scss";
+@import "@/theme/sizes.scss";
 
 .tableRow {
   background-color: $color-white;
-  box-shadow: 0px 0px 5px $color-grey;
-  border-radius: 4px;
+  box-shadow: 0 0 0.313rem $color-grey;
+  border-radius: 0.25rem;
   cursor: pointer;
 
   td {
-    padding: 20px 24px;
+    padding: 1.25rem 1.5rem;
   };
 
   td:first-child {
-    border-radius: 4px 0 0 4px;
+    border-radius: 0.25rem 0 0 0.25rem;
   };
 
   td:last-child {
-    border-radius: 0 4px 4px 0;
+    border-radius: 0 0.25rem 0.25rem 0;
   }
+}
+
+.tableRow:hover {
+  box-shadow: 0px 0px 0.313rem 1px $color-dark-smoke;
 }
 
 .columnCharacter {
@@ -27,8 +32,8 @@
 }
 
 .characterImage {
-  margin-right: 24px;
-  border-radius: 4px;
+  margin-right: 1.25rem;
+  border-radius: 0.25rem;
 }
 
 .characterName {
@@ -46,8 +51,8 @@
     font-size: $font-size-sm;
     font-weight: 500;
 
-    @media (max-width: 680px) {
-      font-size: 12px;
+    @media (max-width: $mobile) {
+      font-size: $font-size-xs;
     }
   }
 }
