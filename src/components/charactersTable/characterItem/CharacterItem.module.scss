@@ -1,0 +1,53 @@
+@import "@/theme/colors.scss";
+@import "@/theme/fonts.scss";
+
+.tableRow {
+  background-color: $color-white;
+  box-shadow: 0px 0px 5px $color-grey;
+  border-radius: 4px;
+  cursor: pointer;
+
+  td {
+    padding: 20px 24px;
+  };
+
+  td:first-child {
+    border-radius: 4px 0 0 4px;
+  };
+
+  td:last-child {
+    border-radius: 0 4px 4px 0;
+  }
+}
+
+.columnName {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+.characterImage {
+  margin-right: 24px;
+  border-radius: 4px;
+}
+
+.characterName {
+  color: $color-dark-smoke;
+  font-size: $font-size-md;
+}
+
+.characterDescriptions {
+  ul {
+    list-style: none;
+  }
+
+  li {
+    color: $color-dark-smoke;
+    font-size: $font-size-sm;
+    font-weight: 500;
+
+    @media (max-width: 680px) {
+      font-size: 12px;
+    }
+  }
+}

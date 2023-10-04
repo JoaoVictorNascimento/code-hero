@@ -1,0 +1,40 @@
+@import "@/theme/colors.scss";
+@import "@/theme/sizes.scss";
+@import "@/theme/fonts.scss";
+
+.charactersTable {
+  width: 100%;
+  border-spacing: 0 8px;
+
+  @media (max-width: $mobile) {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    td {
+      &.characterSeries,
+      &.characterEvents {
+        display: none;
+      }
+    }
+  }
+
+  th {
+    color: $color-smoke;
+    font-size: $font-size-xs;
+    font-weight: 300;
+    text-align: left;
+
+    padding: 0px 24px;
+
+    @media (max-width: $mobile) {
+      display: none;
+
+      &:first-child {
+        display: block;
+        text-align: center;
+      }
+    }
+  }
+}
