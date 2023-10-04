@@ -16,19 +16,21 @@ export default async function CharacterItem(
 
   return (
     <tr className={styles.tableRow}>
-      <td className={styles.columnName}>
-        <Image
-          className={styles.characterImage}
-          src={imgUrl}
-          alt={name}
-          width={48}
-          height={48}
-        />
-        <span className={styles.characterName}>
-          <b>
-            {name}
-          </b>
-        </span>
+      <td>
+        <div className={styles.columnCharacter}>
+          <Image
+            className={styles.characterImage}
+            src={imgUrl}
+            alt={name}
+            width={48}
+            height={48}
+          />
+          <span className={styles.characterName}>
+            <b>
+              {name}
+            </b>
+          </span>
+        </div>
       </td>
       <td className={styles.characterDescriptions}>
         <ul>

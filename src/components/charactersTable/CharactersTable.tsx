@@ -5,11 +5,7 @@ import CharacterItem from "./characterItem/CharacterItem";
 import { CharacterType } from "@/types/CharacterItem";
 
 export default async function CharactersTable() {
-  const response = await fetch(Api.getUrlCharacters(), {
-    next: {
-      revalidate: 60,
-    }
-  });
+  const response = await fetch(Api.getUrlCharacters());
 
   const fetchedData = await response.json();
 
