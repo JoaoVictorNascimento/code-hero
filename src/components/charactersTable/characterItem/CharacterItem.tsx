@@ -1,9 +1,7 @@
-import { CharacterType } from "@/types/CharacterItem";
-import Image from "next/image";
-
+import { CharacterType } from '../../../types/CharacterItem';
 import styles from './CharacterItem.module.scss'
 
-export default async function CharacterItem(
+export default function CharacterItem(
   {
     id,
     name,
@@ -18,7 +16,7 @@ export default async function CharacterItem(
     <tr className={styles.tableRow}>
       <td>
         <div className={styles.columnCharacter}>
-          <Image
+          <img
             className={styles.characterImage}
             src={imgUrl}
             alt={name}

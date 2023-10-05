@@ -1,7 +1,7 @@
 'use client'
 import { Dispatch, SetStateAction, useState } from "react";
 import styles from './InputSearch.module.scss'
-import { SearchIcon } from "@/components/searchIcon/SearchIcon";
+import { SearchIcon } from "../../components/searchIcon/SearchIcon";
 
 interface InputSearchProps {
   onSearchedValue: Dispatch<SetStateAction<string>>;

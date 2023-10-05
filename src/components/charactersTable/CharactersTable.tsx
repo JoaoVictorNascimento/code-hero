@@ -1,22 +1,25 @@
-import Api from "@/services/api";
+import Api from "../../services/api";
 
 import styles from './CharactersTable.module.scss'
 import CharacterItem from "./characterItem/CharacterItem";
-import { CharacterType } from "@/types/CharacterItem";
+import { CharacterType } from "../../types/CharacterItem";
+import { useEffect, useState } from "react";
 
 interface CharactersTableProps {
   filteredCharacter?: string;
 }
 
-export default async function CharactersTable({
+export default function CharactersTable({
   filteredCharacter
 }: CharactersTableProps) {
-  const response = await fetch(Api.getUrlCharacters());
-  const fetchedData = await response.json();
+  const [characters, setCharacters] = useState([])
 
-  const { results } = fetchedData.data;
+  useEffect(() => {
+    Api.getCharacters()
+    .then(response => setCharacters(response.data.results))
+  }, [])
 
-  console.log({ filteredCharacter })
+  console.log({ characters })
 
   return (
     <div className={styles.containerCharactersTable}>
@@ -29,7 +32,7 @@ export default async function CharactersTable({
           </tr>
         </thead>
         <tbody>
-          {results.map((item: CharacterType) => (
+          {characters.map((item: CharacterType) => (
             <CharacterItem
               id={item.id}
               key={item.id}

@@ -1,9 +1,7 @@
-import Image from 'next/image';
 import styles from './Header.module.scss'
+import logo from '../../../assets/obj-logo.png'
 
-import logo from '@/assets/obj-logo.png'
-
-const Avatar = () => {
+function Avatar(){
 	return (
 		<div className={styles.avatar}>
 			<b>
@@ -13,7 +11,7 @@ const Avatar = () => {
 	);
 };
 
-const ExtraContent = () => {
+function ExtraContent(){
 	return (
 		<div className={styles.extraContent}>
 			<div className={styles.textContainer}>
@@ -31,10 +29,10 @@ const ExtraContent = () => {
 	)
 };
 
-const Header = () => {
+export default function Header() {
 	return (
 		<header className={styles.header}>
-			<Image
+			<img
 				src={logo}
 				alt="obj logo"
 				width={100}
@@ -44,5 +42,3 @@ const Header = () => {
 		</header>
 	);
 };
-
-export default Header;
