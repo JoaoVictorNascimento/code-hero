@@ -1,7 +1,7 @@
-@import "../src/theme/colors.scss";
-@import "../src/theme/sizes.scss";
+@import "../theme/colors.scss";
+@import "../theme/sizes.scss";
 
-.app {
+.charactersPage {
   display: flex;
   flex-direction: column;
   height: $height-home-content;

@@ -4,25 +4,27 @@ import styles from './CharactersTable.module.scss'
 import CharacterItem from "./characterItem/CharacterItem";
 import { CharacterType } from "../../types/CharacterItem";
 import { useEffect, useState } from "react";
+import InputSearch from "../inputSearch/InputSearch";
 
-interface CharactersTableProps {
-  filteredCharacter?: string;
-}
+export default function CharactersTable() {
+  const [characters, setCharacters] = useState([]);
+  const [filteredCharacter, setFilteredCharacter] = useState("");
 
-export default function CharactersTable({
-  filteredCharacter
-}: CharactersTableProps) {
-  const [characters, setCharacters] = useState([])
 
   useEffect(() => {
     Api.getCharacters()
-    .then(response => setCharacters(response.data.results))
+      .then(response => setCharacters(response.data.results))
   }, [])
 
   console.log({ characters })
 
   return (
     <div className={styles.containerCharactersTable}>
+      <InputSearch
+        inputId="search-characters"
+        label="Nome do personagem"
+        onSearchedValue={setFilteredCharacter}
+      />
       <table className={styles.charactersTable}>
         <thead>
           <tr>

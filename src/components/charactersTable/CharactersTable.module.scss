@@ -5,6 +5,14 @@
 .containerCharactersTable {
   max-height: $height-home-content;
   overflow-y: auto;
+  margin-top: 1rem;
+
+  @media (max-width: $mobile) {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
 }
 
 .containerCharactersTable::-webkit-scrollbar {
@@ -26,13 +34,7 @@
   border-spacing: 0 0.5rem;
   padding-right: 0.5rem;
   padding-left: 0.1rem;
-
-  @media (max-width: $mobile) {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-  }
+  margin-top: 2.5rem;
 
   th {
     color: $color-smoke;

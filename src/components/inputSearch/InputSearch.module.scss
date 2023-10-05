@@ -16,16 +16,21 @@
 .inputSearch::placeholder {
   font-size: $font-size-sm;
   font-style: italic;
+  font-weight: 300 !important;
 }
 
 .inputSearchContainer {
   position: relative;
-  max-width: 295px;
+  width: 295px;
+
+  @media (max-width: $mobile) {
+    width: calc(100% - 0.6rem);
+  }
 
   svg {
     position: absolute;
     right: 16px;
-    top: 35px;
+    top: 37px;
   }
 
   label {
