@@ -5,18 +5,21 @@ import CharacterItem from "./characterItem/CharacterItem";
 import { CharacterType } from "../../types/CharacterItem";
 import { useEffect, useState } from "react";
 import InputSearch from "../inputSearch/InputSearch";
+import Pagination from "../pagination/Pagination";
+import { CharacterResponse } from "../../types/CharacterResponse";
 
 export default function CharactersTable() {
-  const [characters, setCharacters] = useState([]);
+  const [charactersResponse, setCharactersResponse] = useState<CharacterResponse>();
   const [filteredCharacter, setFilteredCharacter] = useState("");
 
 
   useEffect(() => {
     Api.getCharacters()
-      .then(response => setCharacters(response.data.results))
+      .then(response => setCharactersResponse(response))
   }, [])
 
-  console.log({ characters })
+  console.log(charactersResponse?.data)
+
 
   return (
     <div className={styles.containerCharactersTable}>
@@ -34,7 +37,7 @@ export default function CharactersTable() {
           </tr>
         </thead>
         <tbody>
-          {characters.map((item: CharacterType) => (
+          {charactersResponse?.data.results.map((item: CharacterType) => (
             <CharacterItem
               id={item.id}
               key={item.id}
@@ -46,6 +49,11 @@ export default function CharactersTable() {
           ))}
         </tbody>
       </table>
+      {/* <Pagination
+        currentPage={charactersResponse?.data.offset || 0}
+        totalPages={charactersResponse?.data.total || 0}
+        onPageChange={() => console.log('oi')}
+      /> */}
     </div>
   );
 }
