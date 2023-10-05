@@ -1,0 +1,46 @@
+@import "@/theme/colors.scss";
+@import "@/theme/fonts.scss";
+@import "@/theme/sizes.scss";
+
+.inputSearch {
+  border: 1px solid $color-snow;
+  border-radius: 4px;
+  opacity: 1;
+  padding-left: 16px;
+  padding-top: 8px;
+  padding-bottom: 7px;
+  margin-top: 8px;
+  width: 100%;
+} 
+
+.inputSearch::placeholder {
+  font-size: $font-size-sm;
+  font-style: italic;
+}
+
+.inputSearchContainer {
+  position: relative;
+  max-width: 295px;
+
+  svg {
+    position: absolute;
+    right: 16px;
+    top: 35px;
+  }
+
+  label {
+    color: $color-dark-smoke;
+    font-size: $font-size-md;
+  }
+}
+
+.inputContainer {
+  label {
+    display: inline-block;
+    text-align: left;
+  }
+
+  @media (max-width: $mobile) {
+    text-align: center;
+  }
+}

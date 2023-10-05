@@ -4,12 +4,19 @@ import styles from './CharactersTable.module.scss'
 import CharacterItem from "./characterItem/CharacterItem";
 import { CharacterType } from "@/types/CharacterItem";
 
-export default async function CharactersTable() {
-  const response = await fetch(Api.getUrlCharacters());
+interface CharactersTableProps {
+  filteredCharacter?: string;
+}
 
+export default async function CharactersTable({
+  filteredCharacter
+}: CharactersTableProps) {
+  const response = await fetch(Api.getUrlCharacters());
   const fetchedData = await response.json();
 
   const { results } = fetchedData.data;
+
+  console.log({ filteredCharacter })
 
   return (
     <div className={styles.containerCharactersTable}>

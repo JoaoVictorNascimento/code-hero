@@ -52,7 +52,7 @@
     font-weight: 500;
 
     @media (max-width: $mobile) {
-      font-size: $font-size-xs;
+      display: none;
     }
   }
 }

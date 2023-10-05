@@ -1,7 +1,13 @@
 @import "@/theme/colors.scss";
 @import "@/theme/fonts.scss";
+@import "@/theme/sizes.scss";
 
 .title {
-  font-size: $font-size-lg;
+  font-size: $font-size-xl;
   color: $color-dark-smoke;
+
+  @media (max-width: $mobile) {
+    font-size: $font-size-lg;
+    text-align: center;
+  }
 }
