@@ -1,7 +1,6 @@
-import { useState } from 'react';
+import { usePaginationContext } from "../../providers/PaginationProvider/PaginationProvider";
 
 interface PaginationResult {
-  currentPage: number;
   totalPages: number;
   visiblePages: number[];
   goToPage: (page: number) => void;
@@ -14,52 +13,53 @@ interface PaginationResult {
 export default function usePagination(
   totalItems: number, 
   itemsPerPage: number,
-  pagesToShow : number,
+  buttonPagesToShow: number,
 ): PaginationResult {
-  const [currentPage, setCurrentPage] = useState(1);
+
+  const {paginationState, setPaginationState} = usePaginationContext();
 
   const totalPages = Math.ceil(totalItems / itemsPerPage);
 
   const goToPage = (page: number) => {
     if (page >= 1 && page <= totalPages) {
-      setCurrentPage(page);
+      setPaginationState({currentPage: page});
     }
   };
 
   const nextPage = () => {
-    if (currentPage < totalPages) {
-      setCurrentPage(currentPage + 1);
+    if (paginationState.currentPage < totalPages) {
+      setPaginationState({currentPage: paginationState.currentPage + 1});
     }
   };
 
   const prevPage = () => {
-    if (currentPage > 1) {
-      setCurrentPage(currentPage - 1);
+    if (paginationState.currentPage > 1) {
+      setPaginationState({currentPage: paginationState.currentPage - 1});
     }
   };
 
   const firstPage = () => {
-    setCurrentPage(1);
+    setPaginationState({currentPage: 1});
   };
 
   const lastPage = () => {
-    setCurrentPage(totalPages);
+    setPaginationState({currentPage: totalPages});
   };
 
   const getVisiblePages = () => {
-    const halfPagesToShow = Math.floor(pagesToShow / 2);
+    const halfPagesToShow = Math.floor(buttonPagesToShow / 2);
 
-    let startPage = currentPage - halfPagesToShow;
-    let endPage = currentPage + halfPagesToShow;
+    let startPage = paginationState.currentPage - halfPagesToShow;
+    let endPage = paginationState.currentPage + halfPagesToShow;
 
     if (startPage < 1) {
       startPage = 1;
-      endPage = pagesToShow;
+      endPage = buttonPagesToShow;
     }
 
     if (endPage > totalPages) {
       endPage = totalPages;
-      startPage = totalPages - pagesToShow + 1;
+      startPage = totalPages - buttonPagesToShow + 1;
       if (startPage < 1) startPage = 1;
     }
 
@@ -73,7 +73,6 @@ export default function usePagination(
   };
 
   return {
-    currentPage,
     totalPages,
     visiblePages: getVisiblePages(),
     goToPage,

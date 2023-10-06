@@ -4,7 +4,7 @@ import { CharacterType } from "../../types/CharacterItem";
 import InputSearch from "../inputSearch/InputSearch";
 import { useState } from 'react';
 
-interface CharactersTableProps  {
+interface CharactersTableProps {
   characters?: CharacterType[]
 }
 
@@ -12,14 +12,6 @@ export default function CharactersTable({
   characters,
 }: CharactersTableProps) {
   const [filteredCharacter, setFilteredCharacter] = useState("");
-
-  if(!characters) {
-    return (
-      <div>
-        oi
-      </div>
-    )
-  }
 
   return (
     <div className={styles.containerCharactersTable}>
@@ -38,7 +30,7 @@ export default function CharactersTable({
             </tr>
           </thead>
           <tbody>
-            {characters.map((item: CharacterType) => (
+            {characters && characters.map((item: CharacterType) => (
               <CharacterItem
                 id={item.id}
                 key={item.id}
