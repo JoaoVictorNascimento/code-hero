@@ -1,0 +1,50 @@
+@import '../../theme/colors.scss';
+@import '../../theme/fonts.scss';
+
+.pagination {
+  display: flex;
+  justify-content: center;
+}
+
+.paginationPagesButton {
+  width: 40px;
+  height: 32px;
+  box-shadow: none;
+  border-radius: 4px;
+  border-width: 1px;
+  margin: 8px;
+  background: $color-snow 0% 0% no-repeat padding-box;
+  border: 1px solid $color-dark-snow;
+  opacity: 1;
+  color: $color-smoke;
+}
+
+.paginationPagesButton:hover {
+  background-color: $color-light-blue;
+  color: $color-white;
+}
+
+.pageButtonSelected {
+  background-color: $color-dark-blue;
+  border-color: $color-dark-blue;
+  color: $color-white;
+}
+
+.navigateButtons {
+  color: $color-smoke;
+  padding: 6px;
+  background-color: unset;
+  border-width: 0px;
+  letter-spacing: -2px;
+  font-family: monospace;
+  font-weight: bold;
+  font-size: $font-size-sm;
+}
+
+button.navigateButtons:hover {
+  color: $color-light-blue;
+}
+
+.hiddingButton {
+  display: none;
+}

@@ -1,78 +1,74 @@
-
-import { useState } from 'react';
+import styles from './Pagination.module.scss'
+import usePagination from '../../hooks/usePagination/usePagination';
 
 interface PaginationProps {
-  currentPage: number;
-  totalPages: number;
+  totalItems: number;
+  itemsPerPage: number
   onPageChange: (page: number) => void;
+  buttonPagesToShow: number;
 }
 
-export default function Pagination({ currentPage, totalPages, onPageChange }: PaginationProps) {
-  const [pagesToShow, setPagesToShow] = useState(5);
+const FIRST_PAGE_INDEX = 1;
 
-  const handlePageChange = (page: number) => {
-    onPageChange(page);
+export default function Pagination({ 
+  totalItems, 
+  itemsPerPage,
+  onPageChange,
+  buttonPagesToShow,
+}: PaginationProps) {
+  const {
+    currentPage,
+    totalPages,
+    visiblePages,
+    nextPage,
+    prevPage,
+    firstPage,
+    goToPage,
+    lastPage,
+  } = usePagination(totalItems, itemsPerPage, buttonPagesToShow);
+
+  const renderPagesButton = () => {
+
+    return visiblePages.map((page) => (
+      <button
+        key={page}
+        onClick={() => goToPage(page)}
+        className={`${styles.paginationPagesButton} ${page === currentPage ? styles.pageButtonSelected : ''}`}
+      >
+        {page}
+      </button>
+    ))
   };
 
-  const renderPageButtons = () => {
-    const pageButtons = [];
-    const halfPagesToShow = Math.floor(pagesToShow / 2);
-
-    let startPage = currentPage - halfPagesToShow;
-    let endPage = currentPage + halfPagesToShow;
-
-    if (startPage < 1) {
-      startPage = 1;
-      endPage = pagesToShow;
-    }
-
-    if (endPage > totalPages) {
-      endPage = totalPages;
-      startPage = totalPages - pagesToShow + 1;
-      if (startPage < 1) startPage = 1;
-    }
-
-    for (let i = startPage; i <= endPage; i++) {
-      pageButtons.push(
-        <button
-          key={i}
-          onClick={() => handlePageChange(i)}
-          className={i === currentPage ? 'active' : ''}
-        >
-          {i}
-        </button>
-      );
-    }
-
-    return pageButtons;
-  };
+  const leftNavigateButtonsClassName = `${styles.navigateButtons} ${currentPage === FIRST_PAGE_INDEX ? styles.hiddingButton : ''}`;
+  const rightNavigateButtonsClassName = `${styles.navigateButtons} ${currentPage === totalPages ? styles.hiddingButton : ''}`
 
   return (
-    <div className="pagination">
+    <div className={styles.pagination}>
       <button
-        onClick={() => handlePageChange(1)}
-        disabled={currentPage === 1}
+        onClick={firstPage}
+        className={leftNavigateButtonsClassName}
       >
-        First
+        {"<<"}
       </button>
       <button
-        onClick={() => handlePageChange(currentPage - 1)}
-        disabled={currentPage === 1}
+        onClick={prevPage}
+        className={leftNavigateButtonsClassName}
       >
-        Previous
+        {"<"}
       </button>
-      {renderPageButtons()}
+      {renderPagesButton()}
       <button
-        onClick={() => handlePageChange(currentPage + 1)}
-        disabled={currentPage === totalPages}
+        onClick={nextPage}
+        className={rightNavigateButtonsClassName}
       >
-        Next
+        {">"}
       </button>
       <button
-        onClick={() => handlePageChange(totalPages)}
-        disabled={currentPage === totalPages}
+        onClick={lastPage}
+        className={rightNavigateButtonsClassName}
       >
-        Last
+        {">>"}
       </button>
     </div>
   );

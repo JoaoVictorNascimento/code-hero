@@ -3,9 +3,8 @@
 @import "../../theme/fonts.scss";
 
 .containerCharactersTable {
-  max-height: $height-home-content;
-  overflow-y: auto;
   margin-top: 1rem;
+  margin-bottom: 1.5rem;
 
   @media (max-width: $mobile) {
     display: flex;

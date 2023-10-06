@@ -4,7 +4,6 @@
 .charactersPage {
   display: flex;
   flex-direction: column;
-  height: $height-home-content;
   background-color: $color-dark-snow;
   padding-top: 40px;
   padding-left: 113px;
@@ -14,4 +13,8 @@
     padding-left: 20px;
     padding-right: 20px;
   }
+}
+
+.footerCharactersPage {
+  padding: 34px 39px;
 }
