@@ -6,7 +6,7 @@ import { useEffect, useState } from "react";
 import { CharacterResponse } from "../../types/CharacterResponse";
 import Api from "../../services/api";
 import '../../theme/sizes.scss';
-import useIsMobile from "../../hooks/useIsMobile/useIsMobile";
+import useIsCurrentScreenWidth from "../../hooks/useIsCurrentScreenWidth/useIsCurrentScreenWidth";
 import { usePaginationContext } from "../../providers/PaginationProvider/PaginationProvider";
 import useDebounce from "../../hooks/useDebounce/useDebounce";
 
@@ -14,9 +14,10 @@ const ITEMS_PER_PAGE = 10;
 const BUTTONS_PAGE_TO_SHOW_FULLSCREEN = 5;
 const BUTTONS_PAGE_TO_SHOW_MOBILE = 3;
 const DELAY = 800;
+const MOBILE_WIDTH = 600;
 
 export default function CharactersPage() {
-  const isMobile = useIsMobile();
+  const isCurrentScreenWidth = useIsCurrentScreenWidth(MOBILE_WIDTH);
   const [charactersResponse, setCharactersResponse] = useState<CharacterResponse>();
   const [filteredCharacter, setFilteredCharacter] = useState("");
   const { paginationState, setPaginationState } = usePaginationContext();
@@ -38,7 +39,7 @@ export default function CharactersPage() {
     setPaginationState({ currentPage: 1 });
   }, [setPaginationState, debouncedSearchCharater]);
 
-  const buttonPagesToShow = isMobile ? BUTTONS_PAGE_TO_SHOW_MOBILE : BUTTONS_PAGE_TO_SHOW_FULLSCREEN;
+  const buttonPagesToShow = isCurrentScreenWidth ? BUTTONS_PAGE_TO_SHOW_MOBILE : BUTTONS_PAGE_TO_SHOW_FULLSCREEN;
 
   return (
     <>

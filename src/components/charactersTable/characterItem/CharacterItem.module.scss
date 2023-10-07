@@ -65,3 +65,12 @@
     }
   }
 }
+
+.tooltipDescriptions {
+  li {
+    color: $color-dark-snow;
+    font-size: $font-size-sm;
+    font-weight: 500;
+    max-width: 100% !important;
+  }
+}
