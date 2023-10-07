@@ -9,6 +9,7 @@ import useIsCurrentScreenWidth from "../../hooks/useIsCurrentScreenWidth/useIsCu
 import { usePaginationContext } from "../../providers/PaginationProvider/PaginationProvider";
 import useDebounce from "../../hooks/useDebounce/useDebounce";
 import ResultError from "../../components/resultError/ResultError";
+import ContentPage from "../../components/contentPage/ContentPage";
 
 const ITEMS_PER_PAGE = 10;
 const BUTTONS_PAGE_TO_SHOW_FULLSCREEN = 5;
@@ -72,10 +73,10 @@ export default function CharactersPage() {
 
   return (
     <>
-      <div className={styles.charactersPage}>
+      <ContentPage>
         <Title text="Busca de personagens" />
         {renderTable()}
-      </div>
+      </ContentPage>
       <div className={`${styles.footerCharactersPage} ${hasError ? styles.hiddingFooter : ''}`}>
         <Pagination
           itemsPerPage={ITEMS_PER_PAGE}

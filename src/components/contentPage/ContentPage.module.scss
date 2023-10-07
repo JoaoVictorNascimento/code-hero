@@ -1,0 +1,16 @@
+@import "../../theme/colors.scss";
+@import "../../theme/sizes.scss";
+
+.contentPageContainer {
+  display: flex;
+    flex-direction: column;
+    background-color: $color-dark-snow;
+    padding-top: 40px;
+    padding-left: 113px;
+    padding-right: 113px;
+  
+    @media (max-width: $mobile) {
+      padding-left: 20px;
+      padding-right: 20px;
+    }
+}

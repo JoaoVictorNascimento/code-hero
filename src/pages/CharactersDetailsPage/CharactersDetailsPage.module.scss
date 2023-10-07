@@ -1,0 +1,27 @@
+@import "../../theme/sizes.scss";
+@import "../../theme/colors.scss";
+
+.charactersDetailsPage {
+  height: $height-home-content;
+}
+
+.characterImage {
+  border-radius: 12px;
+}
+
+.charactersInfoSection {
+  margin-top: 16px;
+  display: flex;
+  flex-direction: row;
+}
+
+.firstCommicDescription {
+  margin-left: 16px;
+  color: $color-dark-smoke;
+  
+  p {
+    line-height: 30px;
+    margin-top: 20px;
+    font-weight: 600;
+  }
+}

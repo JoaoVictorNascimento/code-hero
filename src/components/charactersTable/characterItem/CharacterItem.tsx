@@ -1,9 +1,10 @@
 import { CharacterType } from '../../../types/CharacterItem';
+import { Thumbnail } from '../../../types/Thumbnail';
 import Tooltip from '../../tooltip/Tooltip/Tooltip';
 import styles from './CharacterItem.module.scss'
 
 type CharacterProps = {
-  onClickTableRow: (id: number, name: string) => void
+  onClickTableRow: (id: number, name: string, thumbnail: Thumbnail) => void
 }
 
 type CharacterItemProps = CharacterType & CharacterProps;
@@ -21,7 +22,7 @@ export default function CharacterItem(
   const imgUrl = `${thumbnail.path}.${thumbnail.extension}`;
 
   const onClickRow = () => {
-    onClickTableRow(id, name);
+    onClickTableRow(id, name, thumbnail);
   }
 
   return (

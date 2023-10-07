@@ -4,6 +4,7 @@ import { CharacterType } from "../../types/CharacterItem";
 import InputSearch from "../inputSearch/InputSearch";
 import { useNavigate } from 'react-router-dom';
 import Loader from '../loader/Loader';
+import { Thumbnail } from '../../types/Thumbnail';
 
 interface CharactersTableProps {
   characters?: CharacterType[],
@@ -18,8 +19,12 @@ export default function CharactersTable({
 }: CharactersTableProps) {
   const navigate = useNavigate();
 
-  const navigateToCharactersDetails = (id: number, name: string) => {
-    navigate(`/${id}`, { state: { characterName: name } })
+  const navigateToCharactersDetails = (
+    id: number, 
+    name: string, 
+    thumbnail: Thumbnail
+  ) => {
+    navigate(`/${id}`, { state: { characterName: name, thumbnail } })
   };
 
   const renderTable = () => {

@@ -13,7 +13,7 @@ const apiUrl = process.env.REACT_APP_API_URL as string;
 const timeStamp = Date.now();
 const md5Hash = md5(timeStamp + privateKey + publicKey);
 
-const createUrlWithParams = (endpoint: string, params: Record<string, any> = {}): string => {
+const createUrlWithParams = (endpoint?: string, params: Record<string, any> = {}): string => {
   const queryParams = new URLSearchParams({
     ts: timeStamp.toString(),
     apikey: publicKey,
@@ -40,11 +40,23 @@ const api = {
     return response.json();
   },
 
-  getCharacterById: async (id: number) => {
-    const url: string = createUrlWithParams(`characters/${id}`);
+  getCommicsByCharacterId: async (id: number) => {
+    const url: string = createUrlWithParams(`/characters/${id}/comics`);
     const response = await fetch(url);
     return response.json();
   },
+
+  getSeriesByCharacterId: async (id: number) => {
+    const url: string = createUrlWithParams(`/characters/${id}/series`);
+    const response = await fetch(url);
+    return response.json();
+  },
+
+  getEventsByCharacterId: async (id: number) => {
+    const url: string = createUrlWithParams(`/characters/${id}/events`);
+    const response = await fetch(url);
+    return response.json();
+  }
 };
 
 export default api;
