@@ -2,6 +2,7 @@ import styles from './CharactersTable.module.scss'
 import CharacterItem from "./characterItem/CharacterItem";
 import { CharacterType } from "../../types/CharacterItem";
 import InputSearch from "../inputSearch/InputSearch";
+import { useNavigate } from 'react-router-dom';
 
 interface CharactersTableProps {
   characters?: CharacterType[],
@@ -12,6 +13,11 @@ export default function CharactersTable({
   characters,
   onSearchedValue
 }: CharactersTableProps) {
+  const navigate = useNavigate();
+
+  const navigateToCharactersDetails = (id: number, name: string) => {
+    navigate(`\${id}`, {state: {characterName: name}})
+  };
 
   return (
     <div className={styles.containerCharactersTable}>
@@ -38,6 +44,7 @@ export default function CharactersTable({
                 thumbnail={item.thumbnail}
                 series={item.series}
                 events={item.events}
+                onClickTableRow={navigateToCharactersDetails}
               />
             ))}
           </tbody>

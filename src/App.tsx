@@ -1,13 +1,19 @@
 import React from 'react';
 import Header from './components/layout/header/Header';
-import CharactersPage from './pages/CharatersPage';
+import CharactersPage from './pages/CharactersPage/CharatersPage';
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
 function App() {
   return (
-    <div>
+    <>
       <Header />
-      <CharactersPage />
-    </div>
+      <Router>
+        <Routes>
+          <Route path="/" element={<CharactersPage />}/>
+          <Route path="/:id" element={<CharactersPage />}/>
+        </Routes>
+      </Router>
+    </>
   );
 }
 
