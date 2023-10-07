@@ -1,7 +1,6 @@
 import styles from './Loader.module.scss';
 
 export default function Loader(){
-  console.log('OII')
   return (
     <div className={styles.loading}>
       <svg

@@ -1,0 +1,25 @@
+@import "../../theme/colors.scss";
+@import "../../theme/fonts.scss";
+@import "../../theme/sizes.scss";
+
+.resultErrorContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 85vh;
+}
+
+.title {
+  margin-top: 20px;
+  font-size: $font-size-lg;
+  color: $color-dark-smoke;
+  text-align: center;
+}
+
+.subTitle {
+  margin-top: 8px;
+  font-size: $font-size-md;
+  color: $color-smoke;
+  text-align: center;
+}

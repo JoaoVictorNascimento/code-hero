@@ -25,12 +25,11 @@ export default function CharactersTable({
   };
 
   const renderTable = () => {
-
     if (loading) {
       return (
         <Loader />
       );
-    }
+    };
 
     return (
       <table className={styles.charactersTable}>

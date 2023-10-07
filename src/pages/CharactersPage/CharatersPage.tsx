@@ -8,7 +8,7 @@ import Api from "../../services/api";
 import useIsCurrentScreenWidth from "../../hooks/useIsCurrentScreenWidth/useIsCurrentScreenWidth";
 import { usePaginationContext } from "../../providers/PaginationProvider/PaginationProvider";
 import useDebounce from "../../hooks/useDebounce/useDebounce";
-import Loader from "../../components/loader/Loader";
+import ResultError from "../../components/resultError/ResultError";
 
 const ITEMS_PER_PAGE = 10;
 const BUTTONS_PAGE_TO_SHOW_FULLSCREEN = 5;
@@ -51,18 +51,33 @@ export default function CharactersPage() {
 
   const buttonPagesToShow = isCurrentScreenWidth ? BUTTONS_PAGE_TO_SHOW_MOBILE : BUTTONS_PAGE_TO_SHOW_FULLSCREEN;
 
+  const renderTable = () => {
+    if (hasError) {
+      return (
+        <ResultError
+          title="Erro Inesperado"
+          subTitle="Não foi possível realizar a busca tente novamente mais tarde!"
+        />
+      );
+    };
+
+    return (
+      <CharactersTable
+        characters={charactersResponse?.data.results}
+        onSearchedValue={setFilteredCharacter}
+        loading={loading}
+        hasError={hasError}
+      />
+    );
+  };
+
   return (
     <>
       <div className={styles.charactersPage}>
         <Title text="Busca de personagens" />
-          <CharactersTable 
-            characters={charactersResponse?.data.results}
-            onSearchedValue={setFilteredCharacter}
-            loading={loading}
-            hasError={hasError}
-          />
+        {renderTable()}
       </div>
-      <div className={styles.footerCharactersPage}>
+      <div className={`${styles.footerCharactersPage} ${hasError ? styles.hiddingFooter : ''}`}>
         <Pagination
           itemsPerPage={ITEMS_PER_PAGE}
           totalItems={charactersResponse?.data.total || 0}
