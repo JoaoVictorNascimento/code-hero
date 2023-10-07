@@ -29,13 +29,28 @@ export default function Pagination({
     buttonPagesToShow,
   );
 
+  const scrollToTop = () => {
+    window.scrollTo({
+      top: 0,
+      behavior: 'smooth'
+    });
+  };
+
   const { paginationState } = usePaginationContext();
+
+  const onClickNavigationPage = (onClick: () => void) => {
+    scrollToTop();
+    onClick();
+  }
 
   const renderPagesButton = () => {
     return visiblePages.map((page) => (
       <button
         key={page}
-        onClick={() => goToPage(page)}
+        onClick={() => {
+          scrollToTop();
+          goToPage(page);
+        }}
         className={`${styles.paginationPagesButton} ${page === paginationState.currentPage ? styles.pageButtonSelected : ''}`}
       >
         {page}
@@ -49,26 +64,26 @@ export default function Pagination({
   return (
     <div className={styles.pagination}>
       <button
-        onClick={firstPage}
+        onClick={() => onClickNavigationPage(firstPage)}
         className={leftNavigateButtonsClassName}
       >
         {"<<"}
       </button>
       <button
-        onClick={prevPage}
+        onClick={() => onClickNavigationPage(prevPage)}
         className={leftNavigateButtonsClassName}
       >
         {"<"}
       </button>
       {renderPagesButton()}
       <button
-        onClick={nextPage}
+        onClick={() => onClickNavigationPage(nextPage)}
         className={rightNavigateButtonsClassName}
       >
         {">"}
       </button>
       <button
-        onClick={lastPage}
+        onClick={() => onClickNavigationPage(lastPage)}
         className={rightNavigateButtonsClassName}
       >
         {">>"}
