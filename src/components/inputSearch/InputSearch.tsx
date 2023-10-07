@@ -1,14 +1,12 @@
 import { Dispatch, SetStateAction, useState } from "react";
 import styles from './InputSearch.module.scss'
 import { SearchIcon } from "../../components/searchIcon/SearchIcon";
-import debounce from 'lodash/debounce';
 
 interface InputSearchProps {
   onSearchedValue: Dispatch<SetStateAction<string>>;
   inputId: string;
   label: string;
 }
-const DELAY = 800;
 
 export default function InputSearch({
   inputId,
@@ -17,13 +15,9 @@ export default function InputSearch({
 }: InputSearchProps) {
   const [inputValue, setInputValue] = useState("");
 
-  const debouncedFilter = debounce((value) => {
-    onSearchedValue(value);
-  }, DELAY);
-
   const onChange = (value: string) => {
     setInputValue(value);
-    debouncedFilter(value);
+    onSearchedValue(value);
   }
 
   return (

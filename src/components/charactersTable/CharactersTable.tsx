@@ -16,7 +16,7 @@ export default function CharactersTable({
   const navigate = useNavigate();
 
   const navigateToCharactersDetails = (id: number, name: string) => {
-    navigate(`\${id}`, {state: {characterName: name}})
+    navigate(`/${id}`, {state: {characterName: name}})
   };
 
   return (

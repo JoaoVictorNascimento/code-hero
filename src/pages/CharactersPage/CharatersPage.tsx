@@ -8,32 +8,35 @@ import Api from "../../services/api";
 import '../../theme/sizes.scss';
 import useIsMobile from "../../hooks/useIsMobile/useIsMobile";
 import { usePaginationContext } from "../../providers/PaginationProvider/PaginationProvider";
+import useDebounce from "../../hooks/useDebounce/useDebounce";
 
 const ITEMS_PER_PAGE = 10;
 const BUTTONS_PAGE_TO_SHOW_FULLSCREEN = 5;
 const BUTTONS_PAGE_TO_SHOW_MOBILE = 3;
+const DELAY = 800;
 
 export default function CharactersPage() {
   const isMobile = useIsMobile();
   const [charactersResponse, setCharactersResponse] = useState<CharacterResponse>();
   const [filteredCharacter, setFilteredCharacter] = useState("");
   const { paginationState, setPaginationState } = usePaginationContext();
+  const debouncedSearchCharater = useDebounce(filteredCharacter, DELAY);
 
   useEffect(() => {
     if (paginationState.currentPage) {
       const offset = (paginationState.currentPage - 1) * ITEMS_PER_PAGE;
 
-      Api.getCharacters(offset, filteredCharacter)
+      Api.getCharacters(offset, debouncedSearchCharater)
         .then(response => setCharactersResponse(response));
     }
   }, [
     paginationState.currentPage, 
-    filteredCharacter, 
+    debouncedSearchCharater, 
   ]);
 
   useEffect(() => {
     setPaginationState({ currentPage: 1 });
-  }, [setPaginationState, filteredCharacter]);
+  }, [setPaginationState, debouncedSearchCharater]);
 
   const buttonPagesToShow = isMobile ? BUTTONS_PAGE_TO_SHOW_MOBILE : BUTTONS_PAGE_TO_SHOW_FULLSCREEN;
 
