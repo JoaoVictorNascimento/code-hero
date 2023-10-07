@@ -55,4 +55,13 @@
       display: none;
     }
   }
+
+  ul li {
+    @media (max-width: $laptop) {
+      max-width: 7rem;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+  }
 }
