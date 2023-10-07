@@ -66,7 +66,6 @@ export default function CharactersPage() {
         characters={charactersResponse?.data.results}
         onSearchedValue={setFilteredCharacter}
         loading={loading}
-        hasError={hasError}
       />
     );
   };

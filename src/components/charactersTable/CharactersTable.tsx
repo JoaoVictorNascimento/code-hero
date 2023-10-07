@@ -9,14 +9,12 @@ interface CharactersTableProps {
   characters?: CharacterType[],
   onSearchedValue: React.Dispatch<React.SetStateAction<string>>
   loading: boolean;
-  hasError: boolean;
 }
 
 export default function CharactersTable({
   characters,
   onSearchedValue,
   loading,
-  hasError,
 }: CharactersTableProps) {
   const navigate = useNavigate();
 
