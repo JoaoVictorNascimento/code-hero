@@ -2,7 +2,7 @@ import Title from "../components/layout/title/Title";
 import CharactersTable from '../components/charactersTable/CharactersTable';
 import styles from './CharactersPage.module.scss';
 import Pagination from "../components/pagination/Pagination";
-import { Suspense, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { CharacterResponse } from "../types/CharacterResponse";
 import Api from "../services/api";
 import '../theme/sizes.scss';
@@ -16,25 +16,29 @@ const BUTTONS_PAGE_TO_SHOW_MOBILE = 3;
 export default function CharactersPage() {
   const isMobile = useIsMobile();
   const [charactersResponse, setCharactersResponse] = useState<CharacterResponse>();
+  const [filteredCharacter, setFilteredCharacter] = useState("");
   const { paginationState } = usePaginationContext();
 
 
   useEffect(() => {
-    if(paginationState.currentPage) {
+    if (paginationState.currentPage) {
       const offset = (paginationState.currentPage - 1) * ITEMS_PER_PAGE;
-    
-      Api.getCharacters(offset)
+
+      Api.getCharacters(offset, filteredCharacter)
         .then(response => setCharactersResponse(response))
     }
-  }, [paginationState.currentPage]);
+  }, [paginationState.currentPage, filteredCharacter]);
 
   const buttonPagesToShow = isMobile ? BUTTONS_PAGE_TO_SHOW_MOBILE : BUTTONS_PAGE_TO_SHOW_FULLSCREEN;
 
   return (
-    <Suspense fallback={<div>Carregando...</div>}>
+    <>
       <div className={styles.charactersPage}>
         <Title text="Busca de personagens" />
-        <CharactersTable characters={charactersResponse?.data.results} />
+        <CharactersTable 
+          characters={charactersResponse?.data.results}
+          onSearchedValue={setFilteredCharacter}
+        />
       </div>
       <div className={styles.footerCharactersPage}>
         <Pagination
@@ -43,6 +47,6 @@ export default function CharactersPage() {
           buttonPagesToShow={buttonPagesToShow}
         />
       </div>
-      </Suspense>
+    </>
   );
 };

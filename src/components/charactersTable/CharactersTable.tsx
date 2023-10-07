@@ -2,23 +2,23 @@ import styles from './CharactersTable.module.scss'
 import CharacterItem from "./characterItem/CharacterItem";
 import { CharacterType } from "../../types/CharacterItem";
 import InputSearch from "../inputSearch/InputSearch";
-import { useState } from 'react';
 
 interface CharactersTableProps {
-  characters?: CharacterType[]
+  characters?: CharacterType[],
+  onSearchedValue: React.Dispatch<React.SetStateAction<string>>
 }
 
 export default function CharactersTable({
   characters,
+  onSearchedValue
 }: CharactersTableProps) {
-  const [filteredCharacter, setFilteredCharacter] = useState("");
 
   return (
     <div className={styles.containerCharactersTable}>
       <InputSearch
         inputId="search-characters"
         label="Nome do personagem"
-        onSearchedValue={setFilteredCharacter}
+        onSearchedValue={onSearchedValue}
       />
       <div className={styles.teste}>
         <table className={styles.charactersTable}>
