@@ -1,0 +1,16 @@
+.card {
+  border-radius: 15px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.cardContent img {
+  max-width: 250px;
+  max-height: 300px;
+}
+
+.cardFooter {
+  background-color: #333;
+  color: #fff;
+  padding: 10px;
+  text-align: center;
+}

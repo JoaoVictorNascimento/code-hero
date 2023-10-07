@@ -9,6 +9,8 @@ import { CharacterDetailsResponse } from "../../types/CharacterDetailsResponse";
 import ResultError from "../../components/resultError/ResultError";
 import Loader from "../../components/loader/Loader";
 import { Thumbnail } from "../../types/Thumbnail";
+import MidiasCard from "../../components/midiasCard/MidiasCard";
+import { CharacterComicsResponse } from "../../types/CharacterComicsResponse";
 
 const MOBILE_WIDTH = 600;
 
@@ -17,7 +19,7 @@ export default function CharactersDetailsPage() {
   const location = useLocation();
   const [loading, setLoading] = useState<boolean>(false);
   const [hasError, setHasError] = useState<boolean>(false);
-  const [commics, setCommics] = useState<CharacterDetailsResponse>();
+  const [comics, setComics] = useState<CharacterComicsResponse>();
   const [series, setSeries] = useState<CharacterDetailsResponse>();
   const [events, setEvents] = useState<CharacterDetailsResponse>();
   const characterName = location.state.characterName as string;
@@ -37,7 +39,7 @@ export default function CharactersDetailsPage() {
             Api.getEventsByCharacterId(Number(id)),
           ]);
 
-          setCommics(commicsData);
+          setComics(commicsData);
           setSeries(seriesData);
           setEvents(eventsData)
         } catch (error) {
@@ -52,8 +54,30 @@ export default function CharactersDetailsPage() {
     fetchMediasCharacter();
   }, [id]);
 
-  console.log({ commics, series })
+  console.log({ comics, series })
 
+  const renderComics = () => {
+    if (comics) {
+      const comicsItems = comics?.data.results;
+
+      return comicsItems.map(comic => {
+        const { thumbnail, title, id } = comic;
+        const imgUrl = `${thumbnail?.path}.${thumbnail?.extension}`;
+
+        return (
+          <div className={styles.comicItem}>
+            <MidiasCard
+              imageUrl={imgUrl}
+              footerText={title}
+              altImage={title}
+              key={`${id}`}
+            />
+          </div>
+        );
+      });
+    }
+  }
+  
   const renderContent = () => {
     if (loading) {
       return (
@@ -85,14 +109,17 @@ export default function CharactersDetailsPage() {
             <div className={styles.firstCommicDescription}>
               <h2>Primeiro Quadrinho</h2>
               <p>
-                {commics?.data.results[0].description}
+                {comics?.data.results[0].description}
               </p>
             </div>
         </div>
         <div>
           <h3>
-            Commics
+            Comics
           </h3>
+          <div className={styles.comicsList}>
+            {renderComics()}
+          </div>
         </div>
         <div>
           <h3>
