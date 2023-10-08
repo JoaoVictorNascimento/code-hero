@@ -7,7 +7,10 @@ interface ContentPageProps {
 
 export default function ContentPage({children}: ContentPageProps) {
   return (
-    <div className={styles.contentPageContainer}>
+    <div 
+      className={styles.contentPageContainer}
+      data-testid="content-page"
+    >
       {children}
     </div>
   )
