@@ -68,7 +68,7 @@ export default function CharactersDetailsPage() {
         const imgUrl = `${thumbnail?.path}.${thumbnail?.extension}`;
 
         return (
-          <div className={styles.mediaItem}>
+          <div className={styles.mediaItem} key={id}>
             <MediasCard
               imageUrl={imgUrl}
               footerText={title}
