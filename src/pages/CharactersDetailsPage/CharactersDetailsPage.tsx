@@ -112,8 +112,6 @@ export default function CharactersDetailsPage() {
               className={styles.characterImage}
               src={imgUrl}
               alt={characterName}
-              width={400}
-              height={400}
             />
             <div className={styles.firstCommicDescription}>
               {comics?.data?.results[0]?.description ? (

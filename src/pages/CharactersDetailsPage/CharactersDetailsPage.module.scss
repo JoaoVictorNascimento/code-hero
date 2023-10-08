@@ -13,12 +13,25 @@
 
 .characterImage {
   border-radius: 12px;
+  width: 400px;
+  height: 400px;
+
+  @media (max-width: $mobile) {
+    width: 300px;
+    height: 300px;
+    margin-top: 16px;
+  }
 }
 
 .charactersInfoSection {
   margin-top: 16px;
   display: flex;
   flex-direction: row;
+  flex-wrap: wrap;
+
+  @media (max-width: $mobile) {
+    justify-content: center;
+  }
 }
 
 .firstCommicDescription {
@@ -30,6 +43,10 @@
     margin-top: 20px;
     font-weight: 600;
   }
+
+  @media (max-width: $laptop) {
+    margin-top: 20px;
+  }
 }
 
 .mediaList {
@@ -37,10 +54,11 @@
   flex-direction: row;
   overflow-y: hidden;
   margin-top: 10px;
+  padding-bottom: 10px;
 }
 
 .mediaList::-webkit-scrollbar {
-  width: 0.1rem;
+  height: 0.45rem;
 }
 
 .mediaList::-webkit-scrollbar-thumb {
