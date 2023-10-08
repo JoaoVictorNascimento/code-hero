@@ -6,7 +6,10 @@ interface TitleProps {
 
 const Title = ({ text }: TitleProps) => {
   return (
-    <p className={styles.title}>
+    <p 
+      className={styles.title}
+      data-testid="title"
+    >
       <b>
         {text}
       </b>

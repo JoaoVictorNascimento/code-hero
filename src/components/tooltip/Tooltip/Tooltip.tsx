@@ -4,7 +4,7 @@ import styles from './Tooltip.module.scss';
 interface TooltipProps {
   text?: string;
   children: ReactNode;
-  className: string;
+  className?: string;
 }
 
 const Tooltip: React.FC<TooltipProps> = ({ text, children, className }) => {
@@ -23,6 +23,7 @@ const Tooltip: React.FC<TooltipProps> = ({ text, children, className }) => {
       className={styles.tooltipContainer} 
       onMouseEnter={showTooltip} 
       onMouseLeave={hideTooltip}
+      data-testid="tooltip"
     >
       {children}
       {isVisible && <div className={`${styles.tooltipText} ${className || ''}`}>{text || children}</div>}

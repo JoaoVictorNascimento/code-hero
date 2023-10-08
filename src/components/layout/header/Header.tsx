@@ -3,7 +3,10 @@ import logo from '../../../assets/obj-logo.png'
 
 function Avatar(){
 	return (
-		<div className={styles.avatar}>
+		<div 
+			className={styles.avatar}
+			data-testid="avatar"
+		>
 			<b>
 				CB
 			</b>
@@ -13,7 +16,10 @@ function Avatar(){
 
 function ExtraContent(){
 	return (
-		<div className={styles.extraContent}>
+		<div 
+			className={styles.extraContent}
+			data-testid="extra-content"
+		>
 			<div className={styles.textContainer}>
 				<span className={styles.userName}>
 					<b>
@@ -31,12 +37,16 @@ function ExtraContent(){
 
 export default function Header() {
 	return (
-		<header className={styles.header}>
+		<header 
+			className={styles.header}
+			data-testid="header"
+		>
 			<img
 				src={logo}
 				alt="obj logo"
 				width={100}
 				height={30}
+				data-testid="logo-image-header"
 			/>
 			<ExtraContent/>
 		</header>
