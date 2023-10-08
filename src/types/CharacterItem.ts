@@ -1,3 +1,5 @@
+import { MediaType } from "./MediaItem";
+
 export type CharacterType = {
   id: number;
   name: string;
@@ -6,22 +8,9 @@ export type CharacterType = {
     extension: string;
   };
   series: {
-    items: [
-      {
-        name: string;
-        resourceURI: string;
-        available: number;
-        returned: number;
-      }
-    ];
+    items: MediaType[];
   };
   events: {
-    items: [
-      {
-        name: string;
-        resourceURI: string;
-        available: number;
-      }
-    ];
+    items: MediaType[];
   };
 };

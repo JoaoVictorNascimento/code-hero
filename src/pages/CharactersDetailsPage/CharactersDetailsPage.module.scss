@@ -27,7 +27,10 @@
   margin-top: 16px;
   display: flex;
   flex-direction: row;
-  flex-wrap: wrap;
+
+  @media (max-width: $laptop) {
+    flex-wrap: wrap;
+  }
 
   @media (max-width: $mobile) {
     justify-content: center;

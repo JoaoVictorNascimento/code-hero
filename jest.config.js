@@ -21,8 +21,9 @@ module.exports = {
     "!<rootDir>/**/icons/**",
     "!<rootDir>/**/App.tsx",
     "!<rootDir>/**/main.tsx",
-    "!<rootDir>/**/vite-env.d.ts",
+    "!<rootDir>/**/react-app-env.d.ts",
     "!<rootDir>/**/index.ts",
+    "!<rootDir>/**/index.tsx",
     "!<rootDir>/**/*.enum.{js,ts,jsx,tsx}"
   ],
 };

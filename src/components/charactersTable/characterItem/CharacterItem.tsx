@@ -19,6 +19,8 @@ export default function CharacterItem(
     onClickTableRow
   }: CharacterItemProps) {
 
+    console.log({ series })
+
   const imgUrl = `${thumbnail.path}.${thumbnail.extension}`;
 
   const onClickRow = () => {
@@ -29,6 +31,7 @@ export default function CharacterItem(
       <tr 
         className={styles.tableRow}
         onClick={onClickRow}
+        data-testid={`characterItem-${id}`}
       >
         <td>
           <div className={styles.columnCharacter}>
