@@ -7,7 +7,12 @@ interface PaginationContextProviderProps {
   children: ReactNode;
 }
 
-const PaginationContext = createContext<{ paginationState: PaginationState; setPaginationState: React.Dispatch<React.SetStateAction<PaginationState>>} | undefined>(undefined);
+export type PaginationContextType = {
+  paginationState: PaginationState;
+  setPaginationState: React.Dispatch<React.SetStateAction<PaginationState>>;
+};
+
+export const PaginationContext = createContext<PaginationContextType | undefined>(undefined);
 
 export const PaginationProvider: React.FC<PaginationContextProviderProps> = ({ children }) => {
   const [paginationState, setPaginationState] = useState<PaginationState>({
