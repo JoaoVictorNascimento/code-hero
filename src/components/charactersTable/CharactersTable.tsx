@@ -41,7 +41,7 @@ export default function CharactersTable({
       return (
         <Result
           title="Busca não realizada"
-          subTitle="Não foi possível encontrar algo personagem relacionado a pesquisa!"
+          subTitle="Não foi possível encontrar personagens relacionado a pesquisa!"
           typeResult="warning"
         />
       )
