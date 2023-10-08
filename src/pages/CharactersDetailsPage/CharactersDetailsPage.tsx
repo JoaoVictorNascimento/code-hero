@@ -4,16 +4,13 @@ import styles from './CharactersDetailsPage.module.scss';
 import ContentPage from "../../components/contentPage/ContentPage";
 import Api from "../../services/api";
 import { useEffect, useState } from "react";
-import useIsCurrentScreenWidth from "../../hooks/useIsCurrentScreenWidth/useIsCurrentScreenWidth";
-import ResultError from "../../components/resultError/ResultError";
+import Result from "../../components/result/Result";
 import Loader from "../../components/loader/Loader";
 import { Thumbnail } from "../../types/Thumbnail";
 import MediasCard from "../../components/mediasCard/MediasCard";
 import { CharacterComicsResponse } from "../../types/CharacterComicsResponse";
 import { CharacterSeriesResponse } from "../../types/CharacterSeriesResponse";
 import { CharacterEventsResponse } from "../../types/CharacterEventsResponse";
-
-const MOBILE_WIDTH = 600;
 
 export default function CharactersDetailsPage() {
   const { id } = useParams();
@@ -25,7 +22,6 @@ export default function CharactersDetailsPage() {
   const [events, setEvents] = useState<CharacterEventsResponse>();
   const characterName = location.state.characterName as string;
   const thumbnail = location.state.thumbnail as Thumbnail;
-  const isCurrentScreenWidth = useIsCurrentScreenWidth(MOBILE_WIDTH);
 
   useEffect(() => {
     const fetchMediasCharacter = async () => {
@@ -54,8 +50,6 @@ export default function CharactersDetailsPage() {
 
     fetchMediasCharacter();
   }, [id]);
-
-  console.log({ comics, series })
 
   const renderMedias = (medias?: CharacterComicsResponse | CharacterSeriesResponse | CharacterEventsResponse)  => {
     if (medias) {
@@ -96,9 +90,10 @@ export default function CharactersDetailsPage() {
 
     if (hasError) {
       return (
-        <ResultError
+        <Result
           title="Erro Inesperado"
           subTitle="Não foi possível realizar a busca tente novamente mais tarde!"
+          typeResult="error"
         />
       );
     };

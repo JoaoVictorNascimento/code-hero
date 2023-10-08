@@ -8,8 +8,8 @@ import Api from "../../services/api";
 import useIsCurrentScreenWidth from "../../hooks/useIsCurrentScreenWidth/useIsCurrentScreenWidth";
 import { usePaginationContext } from "../../providers/PaginationProvider/PaginationProvider";
 import useDebounce from "../../hooks/useDebounce/useDebounce";
-import ResultError from "../../components/resultError/ResultError";
 import ContentPage from "../../components/contentPage/ContentPage";
+import Result from "../../components/result/Result";
 
 const ITEMS_PER_PAGE = 10;
 const BUTTONS_PAGE_TO_SHOW_FULLSCREEN = 5;
@@ -51,13 +51,15 @@ export default function CharactersPage() {
   }, [setPaginationState, debouncedSearchCharater]);
 
   const buttonPagesToShow = isCurrentScreenWidth ? BUTTONS_PAGE_TO_SHOW_MOBILE : BUTTONS_PAGE_TO_SHOW_FULLSCREEN;
+  const isEmptySearched = Boolean(charactersResponse && charactersResponse?.data?.results.length === 0);
 
   const renderTable = () => {
     if (hasError) {
       return (
-        <ResultError
+        <Result
           title="Erro Inesperado"
           subTitle="Não foi possível realizar a busca tente novamente mais tarde!"
+          typeResult="error"
         />
       );
     };
@@ -67,6 +69,7 @@ export default function CharactersPage() {
         characters={charactersResponse?.data.results}
         onSearchedValue={setFilteredCharacter}
         loading={loading}
+        isEmptySearched={isEmptySearched}
       />
     );
   };
@@ -77,7 +80,7 @@ export default function CharactersPage() {
         <Title text="Busca de personagens" />
         {renderTable()}
       </ContentPage>
-      <div className={`${styles.footerCharactersPage} ${hasError ? styles.hiddingFooter : ''}`}>
+      <div className={`${styles.footerCharactersPage} ${(hasError || isEmptySearched) ? styles.hiddingFooter : ''}`}>
         <Pagination
           itemsPerPage={ITEMS_PER_PAGE}
           totalItems={charactersResponse?.data.total || 0}

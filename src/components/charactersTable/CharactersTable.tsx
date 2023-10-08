@@ -5,17 +5,20 @@ import InputSearch from "../inputSearch/InputSearch";
 import { useNavigate } from 'react-router-dom';
 import Loader from '../loader/Loader';
 import { Thumbnail } from '../../types/Thumbnail';
+import Result from '../result/Result';
 
 interface CharactersTableProps {
   characters?: CharacterType[],
   onSearchedValue: React.Dispatch<React.SetStateAction<string>>
   loading: boolean;
+  isEmptySearched: boolean;
 }
 
 export default function CharactersTable({
   characters,
   onSearchedValue,
   loading,
+  isEmptySearched
 }: CharactersTableProps) {
   const navigate = useNavigate();
 
@@ -33,6 +36,16 @@ export default function CharactersTable({
         <Loader />
       );
     };
+
+    if(isEmptySearched) {
+      return (
+        <Result
+          title="Busca não realizada"
+          subTitle="Não foi possível encontrar algo personagem relacionado a pesquisa!"
+          typeResult="warning"
+        />
+      )
+    }
 
     return (
       <table className={styles.charactersTable}>
