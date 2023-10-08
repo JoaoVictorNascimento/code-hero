@@ -35,6 +35,7 @@ export default function InputSearch({
           placeholder="Search"
           value={inputValue}
           onChange={(e) => onChange(e.target.value)}
+          data-testid="input-search"
         />
       </div>
       <SearchIcon />

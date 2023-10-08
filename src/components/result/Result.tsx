@@ -26,8 +26,18 @@ export default function Result({ title, subTitle, typeResult }: ResultProps) {
 				height={100}
         data-testid={`result-${typeResult}`}
 			/>
-      <span className={styles.title}>{title}</span>
-      <span className={styles.subTitle}>{subTitle}</span>
+      <span 
+        className={styles.title} 
+        data-testid="result-title"
+        >
+          {title}
+        </span>
+      <span 
+        className={styles.subTitle} 
+        data-testid="result-subTitle"
+      >
+          {subTitle}
+        </span>
     </div>
   );
 };

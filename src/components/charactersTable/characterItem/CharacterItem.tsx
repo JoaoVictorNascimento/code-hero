@@ -19,8 +19,6 @@ export default function CharacterItem(
     onClickTableRow
   }: CharacterItemProps) {
 
-    console.log({ series })
-
   const imgUrl = `${thumbnail.path}.${thumbnail.extension}`;
 
   const onClickRow = () => {

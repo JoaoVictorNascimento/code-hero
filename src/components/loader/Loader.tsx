@@ -2,7 +2,10 @@ import styles from './Loader.module.scss';
 
 export default function Loader(){
   return (
-    <div className={styles.loading}>
+    <div 
+      className={styles.loading}
+      data-testid="loader"
+    >
       <svg
         width="100"
         height="100"

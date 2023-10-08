@@ -41,14 +41,17 @@ export default function CharactersTable({
       return (
         <Result
           title="Busca não realizada"
-          subTitle="Não foi possível encontrar personagens relacionado a pesquisa!"
+          subTitle="Não foi possível encontrar personagens relacionados à pesquisa!"
           typeResult="warning"
         />
       )
     }
 
     return (
-      <table className={styles.charactersTable}>
+      <table 
+        className={styles.charactersTable}
+        data-testid="characterTable"
+      >
         <thead>
           <tr>
             <th>Personagem</th>
