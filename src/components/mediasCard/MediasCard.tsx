@@ -1,12 +1,12 @@
-import styles from './MidiasCard.module.scss';
-interface MidiasCardProps {
+import styles from './MediasCard.module.scss';
+interface MediasCardProps {
   imageUrl: string;
   footerText: string;
   altImage: string;
   key: string
 }
 
-export default function MidiasCard({ imageUrl, footerText, altImage, key }: MidiasCardProps) {
+export default function MediasCard({ imageUrl, footerText, altImage, key }: MediasCardProps) {
   return(
     <div className={styles.card} key={key}>
       <div className={styles.cardContent}>

@@ -5,12 +5,13 @@ import ContentPage from "../../components/contentPage/ContentPage";
 import Api from "../../services/api";
 import { useEffect, useState } from "react";
 import useIsCurrentScreenWidth from "../../hooks/useIsCurrentScreenWidth/useIsCurrentScreenWidth";
-import { CharacterDetailsResponse } from "../../types/CharacterDetailsResponse";
 import ResultError from "../../components/resultError/ResultError";
 import Loader from "../../components/loader/Loader";
 import { Thumbnail } from "../../types/Thumbnail";
-import MidiasCard from "../../components/midiasCard/MidiasCard";
+import MediasCard from "../../components/mediasCard/MediasCard";
 import { CharacterComicsResponse } from "../../types/CharacterComicsResponse";
+import { CharacterSeriesResponse } from "../../types/CharacterSeriesResponse";
+import { CharacterEventsResponse } from "../../types/CharacterEventsResponse";
 
 const MOBILE_WIDTH = 600;
 
@@ -20,8 +21,8 @@ export default function CharactersDetailsPage() {
   const [loading, setLoading] = useState<boolean>(false);
   const [hasError, setHasError] = useState<boolean>(false);
   const [comics, setComics] = useState<CharacterComicsResponse>();
-  const [series, setSeries] = useState<CharacterDetailsResponse>();
-  const [events, setEvents] = useState<CharacterDetailsResponse>();
+  const [series, setSeries] = useState<CharacterSeriesResponse>();
+  const [events, setEvents] = useState<CharacterEventsResponse>();
   const characterName = location.state.characterName as string;
   const thumbnail = location.state.thumbnail as Thumbnail;
   const isCurrentScreenWidth = useIsCurrentScreenWidth(MOBILE_WIDTH);
@@ -56,17 +57,25 @@ export default function CharactersDetailsPage() {
 
   console.log({ comics, series })
 
-  const renderComics = () => {
-    if (comics) {
-      const comicsItems = comics?.data.results;
+  const renderMedias = (medias?: CharacterComicsResponse | CharacterSeriesResponse | CharacterEventsResponse)  => {
+    if (medias) {
+      const mediasItems = medias?.data.results;
 
-      return comicsItems.map(comic => {
-        const { thumbnail, title, id } = comic;
+      if(!mediasItems.length) {
+        return (
+          <div className={styles.notInformationAvailable}>
+            Não possui informações disponíveis
+          </div>
+        )
+      }
+
+      return mediasItems.map(media => {
+        const { thumbnail, title, id } = media;
         const imgUrl = `${thumbnail?.path}.${thumbnail?.extension}`;
 
         return (
-          <div className={styles.comicItem}>
-            <MidiasCard
+          <div className={styles.mediaItem}>
+            <MediasCard
               imageUrl={imgUrl}
               footerText={title}
               altImage={title}
@@ -107,24 +116,39 @@ export default function CharactersDetailsPage() {
               height={400}
             />
             <div className={styles.firstCommicDescription}>
-              <h2>Primeiro Quadrinho</h2>
-              <p>
-                {comics?.data.results[0].description}
-              </p>
+              {comics?.data?.results[0]?.description ? (
+                <>
+                  <h2>Primeiro Quadrinho</h2>
+                  <p>
+                    {comics?.data?.results[0]?.description}
+                  </p>
+                </>
+              ) : null}
             </div>
         </div>
-        <div>
-          <h3>
-            Comics
-          </h3>
-          <div className={styles.comicsList}>
-            {renderComics()}
+        <div className={styles.section}>
+          <h2>
+            Quadrinhos
+          </h2>
+          <div className={styles.mediaList}>
+            {renderMedias(comics)}
           </div>
         </div>
-        <div>
-          <h3>
-            Series
-          </h3>
+        <div className={styles.section}>
+          <h2>
+            Séries
+          </h2>
+          <div className={styles.mediaList}>
+            {renderMedias(series)}
+          </div>
+        </div>
+        <div className={styles.section}>
+          <h2>
+            Eventos
+          </h2>
+          <div className={styles.mediaList}>
+            {renderMedias(events)}
+          </div>
         </div>
 
       </div>
