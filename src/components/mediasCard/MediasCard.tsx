@@ -8,7 +8,11 @@ interface MediasCardProps {
 
 export default function MediasCard({ imageUrl, footerText, altImage, key }: MediasCardProps) {
   return(
-    <div className={styles.card} key={key}>
+    <div 
+      key={key} 
+      className={styles.card} 
+      data-testid="media-card"
+    >
       <div className={styles.cardContent}>
         <img src={imageUrl} alt={altImage} />
       </div>
@@ -16,5 +20,5 @@ export default function MediasCard({ imageUrl, footerText, altImage, key }: Medi
         <p>{footerText}</p>
       </div>
     </div>
-  )
-}
+  );
+};
