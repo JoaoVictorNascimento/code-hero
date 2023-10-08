@@ -9,6 +9,7 @@ export default function Loader(){
         viewBox="0 0 100 100"
         preserveAspectRatio="xMidYMid"
         className={styles.ldsDualRing}
+        data-testid="loader-svg"
       >
         <circle
           cx="50"
