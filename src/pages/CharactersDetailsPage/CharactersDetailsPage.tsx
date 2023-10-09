@@ -31,7 +31,7 @@ export default function CharactersDetailsPage() {
           setHasError(false);
 
           const [commicsData, seriesData, eventsData] = await Promise.all([
-            Api.getCommicsByCharacterId(Number(id)),
+            Api.getComicsByCharacterId(Number(id)),
             Api.getSeriesByCharacterId(Number(id)),
             Api.getEventsByCharacterId(Number(id)),
           ]);

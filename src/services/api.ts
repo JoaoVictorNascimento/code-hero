@@ -40,7 +40,7 @@ const api = {
     return response.json();
   },
 
-  getCommicsByCharacterId: async (id: number) => {
+  getComicsByCharacterId: async (id: number) => {
     const url: string = createUrlWithParams(`/characters/${id}/comics`);
     const response = await fetch(url);
     return response.json();
