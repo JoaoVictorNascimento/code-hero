@@ -52,6 +52,7 @@ export default function Pagination({
           goToPage(page);
         }}
         className={`${styles.paginationPagesButton} ${page === paginationState.currentPage ? styles.pageButtonSelected : ''}`}
+        data-testid={`${page === paginationState.currentPage ? 'current-page' : `page-button-${page}`}`}
       >
         {page}
       </button>
@@ -62,16 +63,21 @@ export default function Pagination({
   const rightNavigateButtonsClassName = `${styles.navigateButtons} ${paginationState.currentPage === totalPages ? styles.hiddingButton : ''}`
 
   return (
-    <div className={styles.pagination}>
+    <div 
+      className={styles.pagination}
+      data-testid="pagination"
+    >
       <button
         onClick={() => onClickNavigationPage(firstPage)}
         className={leftNavigateButtonsClassName}
+        data-testid="first-page-button"
       >
         {"<<"}
       </button>
       <button
         onClick={() => onClickNavigationPage(prevPage)}
         className={leftNavigateButtonsClassName}
+        data-testid="prev-page-button"
       >
         {"<"}
       </button>
@@ -79,12 +85,14 @@ export default function Pagination({
       <button
         onClick={() => onClickNavigationPage(nextPage)}
         className={rightNavigateButtonsClassName}
+        data-testid="next-page-button"
       >
         {">"}
       </button>
       <button
         onClick={() => onClickNavigationPage(lastPage)}
         className={rightNavigateButtonsClassName}
+        data-testid="last-page-button"
       >
         {">>"}
       </button>
