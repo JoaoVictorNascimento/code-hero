@@ -93,3 +93,24 @@
   font-size: $font-size-md;
   color: $color-dark-smoke;
 }
+
+.titleContainer {
+  display: flex;
+  flex-direction: row;
+}
+
+.goBackButton {
+  margin-right: 10px;
+  background-color: $color-dark-smoke;
+  color: $color-snow;
+  border: none;
+  border-radius: 50%;
+  cursor: pointer;
+  padding: 10px 15px;
+  font-size: 18px;
+  transition: background-color 0.3s;
+
+  &:hover {
+    background-color: $color-smoke;
+  }
+}

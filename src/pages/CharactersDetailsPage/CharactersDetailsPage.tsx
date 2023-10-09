@@ -11,6 +11,7 @@ import MediasCard from "../../components/mediasCard/MediasCard";
 import { CharacterComicsResponse } from "../../types/CharacterComicsResponse";
 import { CharacterSeriesResponse } from "../../types/CharacterSeriesResponse";
 import { CharacterEventsResponse } from "../../types/CharacterEventsResponse";
+import { useNavigate } from 'react-router-dom';
 
 export default function CharactersDetailsPage() {
   const { id } = useParams();
@@ -20,6 +21,7 @@ export default function CharactersDetailsPage() {
   const [comics, setComics] = useState<CharacterComicsResponse>();
   const [series, setSeries] = useState<CharacterSeriesResponse>();
   const [events, setEvents] = useState<CharacterEventsResponse>();
+  const navigate = useNavigate();
   const characterName = location.state.characterName as string;
   const thumbnail = location.state.thumbnail as Thumbnail;
 
@@ -150,7 +152,15 @@ export default function CharactersDetailsPage() {
 
   return (
     <ContentPage>
-       <Title text={`${characterName}`} />
+      <div className={styles.titleContainer}>
+        <button
+          className={styles.goBackButton}
+          onClick={() => navigate(-1)}
+        >
+          {"<"}
+        </button>
+        <Title text={`${characterName}`} />
+      </div>
         {renderContent()}
     </ContentPage>
   )
